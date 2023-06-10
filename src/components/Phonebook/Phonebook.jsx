@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import css from './Phonebook.module.css';
 
-const Phonebook = () => {
+class Phonebook extends Component {
+  render(){
   return (
-  
-  
       <div className={css.phonebook}>
         <form className={css.form} action="">
           <label className={css.label} htmlFor="name">Name</label>
@@ -18,9 +17,9 @@ const Phonebook = () => {
           <button className={css.button} name='submit' type='submit'>Add contact</button>
         </form>
       </div>
-   
 
   );
 };
+}
 
 export default Phonebook;

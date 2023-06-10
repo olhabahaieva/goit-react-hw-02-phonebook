@@ -1,16 +1,18 @@
 import { Component } from 'react';
 import Phonebook from './Phonebook';
+import Contacts from './Contacts';
+
 export class App extends Component {
   state = {
     contacts: [],
     name: '',
   };
 
-  handlePhonebookClick = inputName =>{
-    this.setState(prevState =>({
-      [inputName]: prevState
-    }))
-  }
+  handlePhonebookClick = (inputName) => {
+    this.setState({
+      name: inputName,
+    });
+  };
 
   render() {
     return (
@@ -24,7 +26,8 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <Phonebook onPhonebookClick={this.handlePhonebookClick}/>
+        <Phonebook onPhonebookClick={this.handlePhonebookClick} />
+        <Contacts inputName={this.state.name} />
       </div>
     );
   }

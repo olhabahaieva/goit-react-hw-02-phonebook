@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import css from './Phonebook.module.css';
 
 class Phonebook extends Component {
-  onChange = inputName => {
-    this.props.onChange(inputName);
+  onChange = (e) => {
+    this.props.onPhonebookClick(e.target.value);
   };
 
   render() {

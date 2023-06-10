@@ -1,0 +1,26 @@
+import React from 'react';
+import css from './Phonebook.module.css';
+
+const Phonebook = () => {
+  return (
+  
+  
+      <div className={css.phonebook}>
+        <form className={css.form} action="">
+          <label className={css.label} htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            pattern="^[a-zA-Za-яА-Я]+(([' -][a-zA-Za-яА-Я ])?[a-zA-Za-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <button className={css.button} name='submit' type='submit'>Add contact</button>
+        </form>
+      </div>
+   
+
+  );
+};
+
+export default Phonebook;

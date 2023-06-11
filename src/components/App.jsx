@@ -6,6 +6,7 @@ export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
 //Function for the phonebook component to take the initial input value

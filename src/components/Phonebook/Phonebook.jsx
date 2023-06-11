@@ -9,17 +9,17 @@ class Phonebook extends Component {
     contacts: [], // Array to store contacts
   };
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({
       inputValue: e.target.value,
     });
   };
 
-  handleButtonClick = (e) => {
+  handleButtonClick = e => {
     e.preventDefault();
     const { inputValue, contacts } = this.state;
     const newContact = {
-      id: nanoid(), 
+      id: nanoid(),
       name: inputValue,
     };
 
@@ -48,13 +48,29 @@ class Phonebook extends Component {
               value={inputValue}
               onChange={this.onChange}
             />
-            <button onClick={this.handleButtonClick} className={css.button} name="submit" type="submit">
+            <label className={css.label} htmlFor="number">
+              Number
+            </label>
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+
+            <button
+              onClick={this.handleButtonClick}
+              className={css.button}
+              name="submit"
+              type="submit"
+            >
               Add contact
             </button>
           </form>
         </div>
         <ul>
-          {contacts.map((contact) => (
+          {contacts.map(contact => (
             <li key={contact.id}>{contact.name}</li>
           ))}
         </ul>

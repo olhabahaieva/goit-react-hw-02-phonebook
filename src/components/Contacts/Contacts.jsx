@@ -4,18 +4,20 @@ import Section from 'components/Section';
 
 class Contacts extends Component {
   render() {
-    const { inputName, inputNumber } = this.props;
+    const { contacts } = this.props;
 
-    if (inputName === '') {
+    if (contacts.length === 0) {
       return null;
     }
 
     return (
       <Section title="Contacts">
         <ul className={css.contacts}>
-          <li>
-            {inputName} : {inputNumber}
-          </li>
+          {contacts.map((contact) => (
+            <li key={contact.id}>
+              {contact.name} : {contact.number}
+            </li>
+          ))}
         </ul>
       </Section>
     );

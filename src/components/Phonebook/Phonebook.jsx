@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import css from './Phonebook.module.css';
 import Section from 'components/Section';
-import { nanoid } from 'nanoid';
+
 
 class Phonebook extends Component {
   state = {
     inputValue: '',
     inputNumber: '',
-    contacts: [],
   };
 
   onChange = (e) => {
@@ -24,22 +23,19 @@ class Phonebook extends Component {
 
   handleButtonClick = (e) => {
     e.preventDefault();
-    const { inputValue, inputNumber, contacts } = this.state;
-    const newContact = {
-      id: nanoid(),
-      name: inputValue,
-      number: inputNumber,
-    };
+    const { inputValue, inputNumber } = this.state;
+    const { createContact } = this.props;
+
+    createContact(inputValue, inputNumber);
 
     this.setState({
-      contacts: [...contacts, newContact],
       inputValue: '',
       inputNumber: '',
     });
   };
 
   render() {
-    const { inputValue, inputNumber, contacts } = this.state;
+    const { inputValue, inputNumber } = this.state;
 
     return (
       <Section title="Phonebook">
@@ -80,13 +76,6 @@ class Phonebook extends Component {
             </button>
           </form>
         </div>
-        <ul>
-          {contacts.map((contact) => (
-            <li key={contact.id}>
-              {contact.name} : {contact.number}
-            </li>
-          ))}
-        </ul>
       </Section>
     );
   }

@@ -10,10 +10,17 @@ export class App extends Component {
   };
 
   handlePhonebookClick = (inputName, inputNumber) => {
-    this.setState({
+    const newContact = {
+      id: inputName + inputNumber,
       name: inputName,
       number: inputNumber,
-    });
+    };
+
+    this.setState((prevState) => ({
+      contacts: [...prevState.contacts, newContact],
+      name: '',
+      number: '',
+    }));
   };
 
   render() {
@@ -30,10 +37,7 @@ export class App extends Component {
         }}
       >
         <Phonebook createContact={this.handlePhonebookClick} />
-        <Contacts
-          inputName={this.state.name}
-          inputNumber={this.state.number}
-        />
+        <Contacts contacts={this.state.contacts} />
       </div>
     );
   }

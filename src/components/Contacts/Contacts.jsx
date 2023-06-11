@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import css from './Contacts.module.css';
-import { nanoid } from 'nanoid';
 
 class Contacts extends Component {
-  state = {
-    name: '',
-    id: nanoid(),
-  };
   render() {
     const { inputName } = this.props;
+
+    if (inputName === '') {
+      return null;
+    }
 
     return (
       <ul className={css.contacts}>

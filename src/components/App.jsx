@@ -18,17 +18,24 @@ export class App extends Component {
 
   // Enter contact name and number function
   handlePhonebookClick = (inputName, inputNumber) => {
-    const newContact = {
-      id: inputName + inputNumber,
-      name: inputName,
-      number: inputNumber,
-    };
+    const { contacts } = this.state;
+    const existingContact = contacts.find(
+      (contact) => contact.name.toLowerCase() === inputName.toLowerCase()
+    );
 
-    this.setState((prevState) => ({
-      contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
-    }));
+    if (existingContact) {
+      alert(`${inputName} is already in contacts`);
+    } else {
+      const newContact = {
+        id: inputName + inputNumber,
+        name: inputName,
+        number: inputNumber,
+      };
+
+      this.setState((prevState) => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    }
   };
 
   render() {
@@ -51,7 +58,10 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <Phonebook createContact={this.handlePhonebookClick} />
+        <Phonebook
+          createContact={this.handlePhonebookClick}
+          contacts={contacts}
+        />
         <Filter onChange={this.handleFilterClick} />
         <Contacts contacts={filteredContacts} />
       </div>

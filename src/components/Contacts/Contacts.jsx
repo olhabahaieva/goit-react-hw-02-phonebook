@@ -3,6 +3,11 @@ import css from './Contacts.module.css';
 import Section from 'components/Section';
 
 class Contacts extends Component {
+  handleDeleteClick = (id) => {
+    const { onDeleteContact } = this.props;
+    onDeleteContact(id);
+  };
+
   render() {
     const { contacts } = this.props;
 
@@ -16,7 +21,12 @@ class Contacts extends Component {
           {contacts.map((contact) => (
             <li key={contact.id}>
               {contact.name} : {contact.number}
-              <button className={css.delete}>Delete</button>
+              <button
+                onClick={() => this.handleDeleteClick(contact.id)}
+                className={css.delete}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

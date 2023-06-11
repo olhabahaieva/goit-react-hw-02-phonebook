@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 

@@ -2,9 +2,25 @@ import React, { Component } from 'react';
 import css from './Phonebook.module.css';
 
 class Phonebook extends Component {
-  onChange = (e) => {
-    this.props.onPhonebookClick(e.target.value);
+
+  state = {
+    inputValue: '',
   };
+
+  onChange = (e) => {
+    this.setState({
+      inputValue: e.target.value,
+    });
+  };
+
+  //Function for the contacts component to create a new contact based on the button click
+  handleButtonClick = (e) => {
+    e.preventDefault();
+    this.props.createContact(this.state.inputValue);
+    this.setState({
+      inputValue: '', // Reset the input value after creating a contact
+    });
+  };  
 
   render() {
     return (
@@ -21,7 +37,7 @@ class Phonebook extends Component {
             required
             onChange={this.onChange}
           />
-          <button className={css.button} name="submit" type="submit">
+          <button onClick={this.handleButtonClick} className={css.button} name="submit" type="submit">
             Add contact
           </button>
         </form>

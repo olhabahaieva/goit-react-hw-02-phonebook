@@ -16,6 +16,7 @@ class Contacts extends Component {
           {contacts.map((contact) => (
             <li key={contact.id}>
               {contact.name} : {contact.number}
+              <button className={css.delete}>Delete</button>
             </li>
           ))}
         </ul>

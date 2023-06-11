@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import css from './Phonebook.module.css';
+import Section from 'components/Section';
 
 class Phonebook extends Component {
 
@@ -24,6 +25,7 @@ class Phonebook extends Component {
 
   render() {
     return (
+      <Section title ='Phonebook'>
       <div className={css.phonebook}>
         <form className={css.form} action="">
           <label className={css.label} htmlFor="name">
@@ -42,6 +44,7 @@ class Phonebook extends Component {
           </button>
         </form>
       </div>
+      </Section>
     );
   }
 }

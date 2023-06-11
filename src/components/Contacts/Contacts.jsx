@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import css from './Contacts.module.css';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 class Contacts extends Component {
+  state = {
+    name: '',
+    id: nanoid(),
+  };
   render() {
+    const { inputName } = this.props;
+
     return (
       <ul className={css.contacts}>
-        <li key={nanoid()}>{this.props.inputName}</li>
+        <li>{inputName}</li>
       </ul>
     );
   }

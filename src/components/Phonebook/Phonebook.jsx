@@ -6,31 +6,40 @@ import { nanoid } from 'nanoid';
 class Phonebook extends Component {
   state = {
     inputValue: '',
-    contacts: [], // Array to store contacts
+    inputNumber: '',
+    contacts: [],
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({
       inputValue: e.target.value,
     });
   };
 
-  handleButtonClick = e => {
+  onNumberChange = (e) => {
+    this.setState({
+      inputNumber: e.target.value,
+    });
+  };
+
+  handleButtonClick = (e) => {
     e.preventDefault();
-    const { inputValue, contacts } = this.state;
+    const { inputValue, inputNumber, contacts } = this.state;
     const newContact = {
       id: nanoid(),
       name: inputValue,
+      number: inputNumber,
     };
 
     this.setState({
-      contacts: [...contacts, newContact], // Add the new contact to the existing contacts array
-      inputValue: '', // Reset the input value after creating a contact
+      contacts: [...contacts, newContact],
+      inputValue: '',
+      inputNumber: '',
     });
   };
 
   render() {
-    const { inputValue, contacts } = this.state;
+    const { inputValue, inputNumber, contacts } = this.state;
 
     return (
       <Section title="Phonebook">
@@ -57,6 +66,8 @@ class Phonebook extends Component {
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
+              value={inputNumber}
+              onChange={this.onNumberChange}
             />
 
             <button
@@ -70,8 +81,10 @@ class Phonebook extends Component {
           </form>
         </div>
         <ul>
-          {contacts.map(contact => (
-            <li key={contact.id}>{contact.name}</li>
+          {contacts.map((contact) => (
+            <li key={contact.id}>
+              {contact.name} : {contact.number}
+            </li>
           ))}
         </ul>
       </Section>

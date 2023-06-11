@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Phonebook from './Phonebook';
 import Contacts from './Contacts';
 
@@ -9,13 +9,12 @@ export class App extends Component {
     number: '',
   };
 
-//Function for the phonebook component to take the initial input value
-  handlePhonebookClick = (inputName) => {
+  handlePhonebookClick = (inputName, inputNumber) => {
     this.setState({
       name: inputName,
+      number: inputNumber,
     });
   };
-
 
   render() {
     return (
@@ -23,7 +22,7 @@ export class App extends Component {
         style={{
           height: '100vh',
           display: 'flex',
-          flexDirection: "column",
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
@@ -31,7 +30,10 @@ export class App extends Component {
         }}
       >
         <Phonebook createContact={this.handlePhonebookClick} />
-        <Contacts inputName={this.state.name} />
+        <Contacts
+          inputName={this.state.name}
+          inputNumber={this.state.number}
+        />
       </div>
     );
   }
